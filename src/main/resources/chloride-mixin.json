@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.mewen.chloride.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+      "ChlorideZoomMixin",
+      "ChlorideFogMixin"
+    ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

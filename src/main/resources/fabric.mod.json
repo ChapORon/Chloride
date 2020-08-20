@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "chloride",
+  "version": "${version}",
+
+  "name": "Chloride",
+  "description": "A addon to Sodium to add some missing features such as Optifine zoom or fog control",
+  "authors": [
+    "MewenSeyun"
+  ],
+  "contact": {
+    "icon": "https://www.flaticon.com/free-icon/salt_12066"
+  },
+
+  "license": "MIT",
+  "icon": "assets/chloride/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.mewen.chloride.Chloride"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "chloride-mixin.json",
+      "environment": "client"
+    }
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.9.1",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

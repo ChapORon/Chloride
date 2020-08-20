@@ -1,3 +1,3 @@
-# Chlorure
+# Chloride
 
-Chlorure is a complementary mod to Sodium to add somme OptiFine features such as Zoom and Fog control
+Chloride is a complementary mod to Sodium to add somme OptiFine features such as Zoom and Fog control

@@ -1,0 +1,7 @@
+{
+    "key.chloride.zoom": "Enable/Disable Zoom",
+    "key.chloride.menu": "Open Chloride Menu",
+    "key.chloride.reload": "Reload Chloride Configuration",
+    "text.chloride.reloaded": "Chloride Configuration successfully reloaded",
+    "category.chloride": "Chloride"
+}
