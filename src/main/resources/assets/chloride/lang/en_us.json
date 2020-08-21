@@ -1,7 +1,23 @@
 {
     "key.chloride.zoom": "Enable/Disable Zoom",
-    "key.chloride.menu": "Open Chloride Menu",
     "key.chloride.reload": "Reload Chloride Configuration",
+    "option.chloride.menuTitle.general": "Chloride",
+    "option.chloride.main": "Chloride Configuration...",
     "text.chloride.reloaded": "Chloride Configuration successfully reloaded",
-    "category.chloride": "Chloride"
+    "category.chloride": "Chloride",
+    "option.chloride.category.zoom": "Zoom FOV",
+    "option.chloride.category.zoom.name": "Zoom FOV",
+    "option.chloride.category.fog": "Fog Control",
+    "option.chloride.category.fog.nether": "Nether Fog",
+    "option.chloride.category.fog.overworld": "Overworld Fog",
+    "option.chloride.category.fog.end": "End Fog",
+    "option.chloride.category.fog.water": "Water Fog",
+    "option.chloride.category.fog.water.off": "OFF",
+    "option.chloride.category.fog.water.potion": "NO POTIONS",
+    "option.chloride.category.fog.water.full": "NORMAL",
+    "option.chloride.category.fog.lava": "Lava Fog",
+    "option.chloride.category.fog.lava.off": "OFF",
+    "option.chloride.category.fog.lava.potion": "NO POTIONS",
+    "option.chloride.category.fog.lava.full": "NORMAL",
+    "option.chloride.category.dynamic_light": "Dynamic Light"
 }

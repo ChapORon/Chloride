@@ -8,7 +8,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class ReloadAction extends AChlorideAction
 {
-    public ReloadAction() {super("", GLFW.GLFW_KEY_R);}
+    public ReloadAction() {super("key.chloride.reload", GLFW.GLFW_KEY_R);}
 
     @Override
     public void OnAction(MinecraftClient client)

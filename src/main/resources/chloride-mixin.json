@@ -6,7 +6,8 @@
   ],
   "client": [
       "ChlorideZoomMixin",
-      "ChlorideFogMixin"
+      "ChlorideFogMixin",
+      "ChlorideMenuMixin"
     ],
   "injectors": {
     "defaultRequire": 1
