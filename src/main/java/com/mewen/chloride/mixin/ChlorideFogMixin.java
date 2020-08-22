@@ -1,7 +1,8 @@
 package com.mewen.chloride.mixin;
 
 import com.mewen.chloride.Chloride;
-import com.mewen.chloride.features.Fog;
+import com.mewen.chloride.features.ChlorideFogController;
+import com.mewen.chloride.features.ChlorideZoom;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.BackgroundRenderer;
@@ -18,11 +19,8 @@ public class ChlorideFogMixin
     @Inject(method = "applyFog", at = @At("HEAD"), cancellable = true)
     private static void DisableFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci)
     {
-        Fog fog = Chloride.GetFeature("fog");
-        if (fog != null)
-        {
-            if (fog.HideFog(camera, fogType))
-                ci.cancel();
-        }
+        ChlorideFogController fog = Chloride.GetFeature("fog");
+        if (fog != null && fog.HideFog(camera))
+            ci.cancel();
     }
 }

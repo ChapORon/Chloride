@@ -14,9 +14,16 @@
     "option.chloride.category.fog.lava": "Brume: Lave",
     "option.chloride.category.dynamic_light": "Lumières Dynamiques",
     "option.chloride.category.fog.water.off": "DÉSACTIVÉE",
-    "option.chloride.category.fog.water.potion": "SANS POTIONS",
+    "option.chloride.category.fog.water.potion": "POTIONS",
     "option.chloride.category.fog.water.full": "NORMAL",
     "option.chloride.category.fog.lava.off": "DÉSACTIVÉE",
-    "option.chloride.category.fog.lava.potion": "SANS POTIONS",
-    "option.chloride.category.fog.lava.full": "NORMAL"
+    "option.chloride.category.fog.lava.potion": "POTIONS",
+    "option.chloride.category.fog.lava.full": "NORMAL",
+    "option.chloride.category.fog": "Fog Control",
+    "option.chloride.category.fog.water.off.tooltip": "DÉSACTIVÉE: Désactive complètement la brume sous l'eau",
+    "option.chloride.category.fog.water.potion.tooltip": "POTIONS: Désactive la brume sous l'eau seulement seulement si on a l'effet de respiration aqutique",
+    "option.chloride.category.fog.water.full.tooltip": "NORMAL: Brume normal de Minecraft sous l'eau",
+    "option.chloride.category.fog.lava.off.tooltip": "DÉSACTIVÉE: Désactive complètement la brume dans la lave",
+    "option.chloride.category.fog.lava.potion.tooltip": "POTIONS: Désactive la brume dans la lave seulement seulement si on a l'effet de respiration aqutique",
+    "option.chloride.category.fog.lava.full.tooltip": "NORMAL: Brume normal de Minecraft dans la lave"
 }
