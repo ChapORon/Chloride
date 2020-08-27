@@ -5,6 +5,8 @@
     "option.chloride.main": "Chloride Configuration...",
     "text.chloride.reloaded": "Chloride Configuration successfully reloaded",
     "category.chloride": "Chloride",
+    "chloride.button.on": "On",
+    "chloride.button.off": "Off",
     "option.chloride.category.zoom": "Zoom",
     "option.chloride.category.zoom.name": "Zoom FOV",
     "option.chloride.category.fog": "Fog Control",

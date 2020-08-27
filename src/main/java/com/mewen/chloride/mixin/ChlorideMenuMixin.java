@@ -7,12 +7,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.options.OptionsScreen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.options.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -21,8 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(OptionsScreen.class)
 public abstract class ChlorideMenuMixin extends Screen
 {
-    @Shadow @Final private GameOptions settings;
-
     protected ChlorideMenuMixin(Text title) {
         super(title);
     }
@@ -36,6 +31,6 @@ public abstract class ChlorideMenuMixin extends Screen
                 aButton.y -= 10;
         }
         this.addButton(new ButtonWidget(this.width / 2 - 155, this.height / 6 + 134 - 6, 150, 20,
-                new TranslatableText("option.chloride.main"), (buttonWidget) -> Chloride.OpenConfigMenu(this, this.settings)));
+                new TranslatableText("option.chloride.main"), (buttonWidget) -> Chloride.OpenConfigMenu(this)));
     }
 }

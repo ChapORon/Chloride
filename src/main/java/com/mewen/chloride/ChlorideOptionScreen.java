@@ -28,10 +28,10 @@ class ChlorideOptionScreen extends GameOptionsScreen
     private List<StringRenderable> tooltip;
     private final ArrayList<AChlorideFeature.AGUIConfiguration> controllers = new ArrayList<>();
 
-    public ChlorideOptionScreen(Screen parent, GameOptions gameOptions, Map<String, AChlorideFeature> features)
+    public ChlorideOptionScreen(Screen parent)
     {
-        super(parent, gameOptions, new TranslatableText("option.chloride.menuTitle.general"));
-        Collection<AChlorideFeature> featureList = features.values();
+        super(parent, null, new TranslatableText("option.chloride.menuTitle.general"));
+        Collection<AChlorideFeature> featureList = Chloride.GetFeatureList();
         for (AChlorideFeature feature : featureList)
         {
             AChlorideFeature.AGUIConfiguration gui = feature.GetGUI();
@@ -51,7 +51,7 @@ class ChlorideOptionScreen extends GameOptionsScreen
             {
                 String categoryKey = controller.GetCategoryKey();
                 if (categoryKey != null && !categoryKey.isEmpty())
-                    this.list.addSingleOptionEntry(new ChlorideSectionTitle(this, categoryKey));
+                    this.list.addSingleOptionEntry(new ChlorideSectionTitle(this, categoryKey, controller.GetParent()));
                 if (options.length == 1)
                     this.list.addSingleOptionEntry(options[0]);
                 else
@@ -90,18 +90,20 @@ class ChlorideOptionScreen extends GameOptionsScreen
     {
         private final Screen parent;
         private final String textKey;
+        private final AChlorideFeature feature;
 
-        ChlorideSectionTitle(Screen parent, String key)
+        ChlorideSectionTitle(Screen parent, String key, AChlorideFeature feature)
         {
             super(key);
             this.parent = parent;
             this.textKey = key;
+            this.feature = feature;
         }
 
         @Override
         public AbstractButtonWidget createButton(GameOptions options, int x, int y, int width)
         {
-            return new TextAbstractButtonWidget(x, y, parent.width, 20, new TranslatableText(textKey));
+            return new TextAbstractButtonWidget(x, y, parent.width, 20, new TranslatableText(textKey), feature);
         }
 
         @Environment(EnvType.CLIENT)
@@ -109,18 +111,48 @@ class ChlorideOptionScreen extends GameOptionsScreen
         {
             private final Text text;
             private final TextRenderer textRenderer;
+            private final ButtonWidget button;
+            private final AChlorideFeature feature;
+            private final Text onText = new TranslatableText("chloride.button.on");
+            private final Text offText = new TranslatableText("chloride.button.off");
 
-            public TextAbstractButtonWidget(int x, int y, int width, int height, Text text)
+            public TextAbstractButtonWidget(int x, int y, int width, int height, Text text, AChlorideFeature feature)
             {
                 super(x, y, width, height, LiteralText.EMPTY);
+                this.feature = feature;
                 this.text = text;
                 this.textRenderer = MinecraftClient.getInstance().textRenderer;
+                this.button = new ButtonWidget(x, y, 40, 20, GetButtonText(), button1 -> this.OnButtonPress());
+            }
+
+            @Override
+            public boolean mouseClicked(double mouseX, double mouseY, int button)
+            {
+                return this.button.mouseClicked(mouseX, mouseY, button);
             }
 
             @Override
             public void render(MatrixStack matrices, int mouseX, int mouseY, float delta)
             {
-                this.textRenderer.drawWithShadow(matrices, text, (float)((this.width - textRenderer.getWidth(text)) / 2), (float)y + 5, 16777215);
+                float textWidth = textRenderer.getWidth(text);
+                float textX = (this.width - textWidth) / 2 - 20;
+                this.textRenderer.drawWithShadow(matrices, text, textX, (float)y + 5, 16777215);
+                this.button.x = (int)(textX + textWidth + 10);
+                this.button.y = y;
+                this.button.render(matrices, mouseX, mouseY, delta);
+            }
+
+            private void OnButtonPress()
+            {
+                feature.SetEnable(!feature.IsEnable());
+                button.setMessage(GetButtonText());
+            }
+
+            private Text GetButtonText()
+            {
+                if (feature.IsEnable())
+                    return onText;
+                return offText;
             }
         }
     }

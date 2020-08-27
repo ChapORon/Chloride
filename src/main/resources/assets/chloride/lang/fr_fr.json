@@ -25,5 +25,7 @@
     "option.chloride.category.fog.water.full.tooltip": "NORMAL: Brume normal de Minecraft sous l'eau",
     "option.chloride.category.fog.lava.off.tooltip": "DÉSACTIVÉE: Désactive complètement la brume dans la lave",
     "option.chloride.category.fog.lava.potion.tooltip": "POTIONS: Désactive la brume dans la lave seulement seulement si on a l'effet de respiration aqutique",
-    "option.chloride.category.fog.lava.full.tooltip": "NORMAL: Brume normal de Minecraft dans la lave"
+    "option.chloride.category.fog.lava.full.tooltip": "NORMAL: Brume normal de Minecraft dans la lave",
+    "chloride.button.on": "On",
+    "chloride.button.off": "Off"
 }

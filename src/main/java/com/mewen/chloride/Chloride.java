@@ -16,7 +16,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Environment(EnvType.CLIENT)
@@ -52,7 +54,13 @@ public class Chloride implements ClientModInitializer
                     JsonElement featureJsonConfig = jsonData.get(featureName);
                     AChlorideFeature feature = features.get(featureName);
                     if (feature != null && featureJsonConfig != null)
-                        feature.DeserializeConfiguration(featureJsonConfig);
+                    {
+                        JsonObject featureJsonConfigObject = featureJsonConfig.getAsJsonObject();
+                        JsonElement featureEnableElement = featureJsonConfigObject.remove("enable");
+                        if (featureEnableElement != null)
+                            feature.SetEnable(featureEnableElement.getAsBoolean());
+                        feature.DeserializeConfiguration(featureJsonConfigObject);
+                    }
                 }
             }
             catch (IOException | JsonParseException ignored) {}
@@ -83,7 +91,11 @@ public class Chloride implements ClientModInitializer
                 {
                     JsonElement element = feature.SerializeConfiguration();
                     if (element != null)
-                        configurationObject.add(featureName, element);
+                    {
+                        JsonObject featureObject = element.getAsJsonObject();
+                        featureObject.add("enable", new JsonPrimitive(feature.IsEnable()));
+                        configurationObject.add(featureName, featureObject);
+                    }
                 }
             }
             gson.toJson(configurationObject, writer);
@@ -93,13 +105,18 @@ public class Chloride implements ClientModInitializer
 
     }
 
-    public static void OpenConfigMenu(Screen parent, GameOptions gameOptions) {MinecraftClient.getInstance().openScreen(new ChlorideOptionScreen(parent, gameOptions, features));}
+    static Collection<AChlorideFeature> GetFeatureList() { return features.values();}
+
+    public static void OpenConfigMenu(Screen parent) {MinecraftClient.getInstance().openScreen(new ChlorideOptionScreen(parent));}
 
     @SuppressWarnings("unchecked")
     public static <T extends AChlorideFeature> T GetFeature(String name)
     {
         if (!features.containsKey(name))
             return null;
-        return (T)features.get(name);
+        AChlorideFeature feature = features.get(name);
+        if (feature.IsEnable())
+            return (T)feature;
+        return null;
     }
 }
